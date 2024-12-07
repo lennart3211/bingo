@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>{{.Title}}</h1>
+<div class="content">
+    <div class="header">
+        <h2>Drawn Numbers: {{len .Numbers}}/75</h2>
+    </div>
+    <div class="numbers-grid">
+        {{range .Numbers}}
+        <div class="number">
+            <span class="letter">{{.Letter}}</span>
+            <span class="value">{{.Value}}</span>
+            <span class="time">{{.DrawTime}}</span>
+        </div>
+        {{end}}
+    </div>
+</div>
+
+<div class="buttons">
+    {{if .Complete}}
+    <div class="complete-message">All numbers have been drawn!</div>
+    {{else}}
+    <form action="/draw" method="POST" class="button-form">
+        <button type="submit" class="button">Draw Number</button>
+    </form>
+    {{end}}
+    <form action="/reset" method="POST" class="button-form">
+        <button type="submit" class="button reset">Reset Game</button>
+    </form>
+</div>
+</body>
+</html>
